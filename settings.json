@@ -1,0 +1,22 @@
+{
+    "web_server": {
+        "listen_on": ["127.0.0.1", 0],
+        "www_directory": "www",
+        "index_files": ["index.php"]
+    },
+    "chrome": {
+        "log_file": "debug.log",
+        "frame_color": "#FFFFFF",
+        "center_on_startup": true,
+        "require_plugins": false
+    },
+    "main_window": {
+        "title": "Sistem Resep Hotel",
+        "icon": "",
+        "default_size": [1280, 800],
+        "minimum_size": [1024, 768],
+        "maximum_size": [0, 0],
+        "disable_maximize": false,
+        "full_screen": false
+    }
+}
