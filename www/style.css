@@ -1,66 +1,145 @@
-/* style.css - Tampilan Ala Excel / Hotel Report */
+/* style.css - GLASSMORPHISM SAAS THEME */
+
+:root {
+    /* Glass Vars */
+    --glass-bg: rgba(255, 255, 255, 0.7); /* Kaca Putih Transparan */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --backdrop: blur(12px);
+    
+    /* Colors */
+    --primary: #4f46e5;       /* Indigo Modern */
+    --primary-hover: #4338ca;
+    --text-main: #1e293b;     /* Slate Dark */
+    --text-muted: #64748b;    /* Slate Gray */
+    --danger: #ef4444;
+    --success: #10b981;
+    
+    /* Radius */
+    --radius-l: 20px;
+    --radius-m: 12px;
+    --radius-s: 8px;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    background-color: #f0f0f0;
-    margin: 20px;
+    /* Background Gradient Dinamis biar efek kaca kelihatan */
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
+    /* Atau opsi lebih colorful: */
+    background: radial-gradient(circle at 10% 20%, rgb(239, 246, 255) 0%, rgb(219, 228, 255) 90%);
+    
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: var(--text-main);
+    margin: 0; padding: 40px 20px;
+    min-height: 100vh;
 }
 
+/* --- THE GLASS CONTAINER --- */
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #999;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    
+    /* Efek Kaca Frosted */
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop);
+    -webkit-backdrop-filter: var(--backdrop);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-l);
+    
+    padding: 30px;
 }
 
-h1, h2 {
-    text-transform: uppercase;
-    border-bottom: 2px solid #000;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
+/* HEADER */
+.page-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 30px; border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 20px;
+}
+.page-title h1 { margin: 0; font-size: 26px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+.page-title span { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+/* BUTTONS (Modern Pill Shape) */
+.btn, .btn-icon, button {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; font-size: 13px; font-weight: 600;
+    border: none; border-radius: 50px; /* Pill Shape */
+    cursor: pointer; text-decoration: none; transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+
+/* Button Colors */
+.btn-primary, .btn-save, .btn-search, .btn-upload { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-hover); box-shadow: 0 0 15px rgba(79, 70, 229, 0.4); }
+
+.btn-secondary, .btn-back { background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid rgba(0,0,0,0.05); }
+.btn-secondary:hover { background: white; }
+
+.btn-success, .btn-export { background: var(--success); color: white; }
+.btn-danger, .btn-reset { background: var(--danger); color: white; }
+
+/* INPUTS (Glassy Input) */
+input[type="text"], input[type="number"], .file-input, select {
+    width: 100%; padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.5); /* Semi transparan */
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius-m);
+    font-size: 14px; color: var(--text-main);
+    box-sizing: border-box; transition: 0.3s;
+}
+input:focus {
+    background: white; border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    outline: none;
 }
 
-/* Tombol ala Windows Klasik */
-.btn {
-    background-color: #eee;
-    border: 1px solid #000;
-    padding: 5px 15px;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000;
-    display: inline-block;
+/* TABLE (Floating Rows) */
+.table-responsive {
+    background: rgba(255,255,255,0.4);
+    border-radius: var(--radius-m);
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
-.btn:hover {
-    background-color: #ddd;
-}
-
-.btn-primary {
-    background-color: #444;
-    color: #fff;
-}
-
-/* Tabel Excel Style */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    border: 1px solid #999; /* Garis abu-abu tegas */
-    padding: 4px 8px;
-    text-align: left;
-}
+table { width: 100%; border-collapse: separate; border-spacing: 0 6px; margin-top: 0; }
 
 th {
-    background-color: #e0e0e0; /* Header abu-abu */
-    font-weight: bold;
-    text-align: center;
+    padding: 15px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);
+    letter-spacing: 1px; border: none; text-align: left;
 }
 
-/* Supaya angka rata kanan seperti Excel */
+/* Baris Tabel jadi Kartu Melayang */
+td {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 12px 15px; border: none;
+    font-size: 14px;
+}
+/* Sudut bulat untuk baris tabel */
+tr td:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+tr td:last-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+
+tr:hover td { background: white; transform: scale(1.005); transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+
+/* ALERTS */
+.alert { padding: 15px; border-radius: var(--radius-m); margin-bottom: 20px; font-weight: 600; backdrop-filter: blur(5px); }
+.alert.success { background: rgba(16, 185, 129, 0.1); color: #065f46; border: 1px solid rgba(16, 185, 129, 0.2); }
+.alert.error { background: rgba(239, 68, 68, 0.1); color: #991b1b; border: 1px solid rgba(239, 68, 68, 0.2); }
+
+/* UTILITIES */
+.icon { width: 18px; height: 18px; fill: currentColor; opacity: 0.8; }
+.text-center { text-align: center; }
 .text-right { text-align: right; }
+
+/* Logo Style */
+.app-logo {
+    height: 40px; /* Sesuaikan tinggi logo */
+    width: auto;
+    display: block;
+}
+
+/* Kalau mau logo + teks berdampingan */
+.brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
